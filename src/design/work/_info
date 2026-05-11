@@ -1,0 +1,106 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/fetools/work_area/frontend/Batch_11/bkaran/Mirafra/src/design
+T_opt
+!s110 1778478157
+VGH[:cgd9V@Ak;1TCSD2K;1
+04 6 4 work alu_tb fast 0
+=1-6805caf5892e-6a016c4d-6fe10-17679
+o-quiet -auto_acc_if_foreign -work work
+Z1 tCvgOpt 0
+n@_opt
+OE;O;10.6c;65
+valu
+!s110 1778477460
+!i10b 1
+!s100 0S9jZ^NdfLNnVSKi<`B<?3
+Ih@l7PglRdOFDW[CAiY[=61
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1778133955
+8alu.v
+Falu.v
+Z3 L0 22
+Z4 OE;L;10.6c;65
+r1
+!s85 0
+31
+!s108 1778477460.000000
+!s107 alu.v|
+!s90 alu.v|
+!i113 0
+o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+valu_project
+Z5 !s110 1778478149
+!i10b 1
+!s100 ;MIUW^H66`N@j39C1n8=?1
+I8]OCo6IHTX4ehCFJRYO9O3
+R2
+R0
+w1778477455
+8karan.v
+Fkaran.v
+R3
+R4
+r1
+!s85 0
+31
+Z6 !s108 1778478149.000000
+Z7 !s107 alu_tb.v|alu_ref.v|karan.v|
+Z8 !s90 +acc|+cover|-l|alu.log|karan.v|alu_ref.v|alu_tb.v|
+!i113 0
+Z9 !s102 +cover
+Z10 o+acc +cover -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+valu_ref_model
+R5
+!i10b 1
+!s100 J>T98J`Y@zH<^bbfSTQFT3
+IoEnPl<OeYeV7`P_8Oa3PY2
+R2
+R0
+w1778402707
+8alu_ref.v
+Falu_ref.v
+L0 8
+R4
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+R1
+valu_tb
+R5
+!i10b 1
+!s100 :mgiTGAZe=E8_iXKhGa<T3
+IHG7@FmDb6>Man43T;zOTY3
+R2
+R0
+w1778402698
+8alu_tb.v
+Falu_tb.v
+L0 8
+R4
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+R1
