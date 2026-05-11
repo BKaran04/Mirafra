@@ -9,22 +9,22 @@ z2
 cModel Technology
 Z0 d/fetools/work_area/frontend/Batch_11/bkaran/Mirafra/src/design
 T_opt
-!s110 1778478157
-VGH[:cgd9V@Ak;1TCSD2K;1
+!s110 1778479862
+VRn_4kdJ^??bYFFcgmd@652
 04 6 4 work alu_tb fast 0
-=1-6805caf5892e-6a016c4d-6fe10-17679
+=1-6805caf5892e-6a0172f6-a68a1-74a7
 o-quiet -auto_acc_if_foreign -work work
 Z1 tCvgOpt 0
 n@_opt
 OE;O;10.6c;65
 valu
-!s110 1778477460
+!s110 1778479781
 !i10b 1
 !s100 0S9jZ^NdfLNnVSKi<`B<?3
-Ih@l7PglRdOFDW[CAiY[=61
+I`_B8=jF4QTEHGNC@U]YPI0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1778133955
+w1778479319
 8alu.v
 Falu.v
 Z3 L0 22
@@ -32,14 +32,15 @@ Z4 OE;L;10.6c;65
 r1
 !s85 0
 31
-!s108 1778477460.000000
+!s108 1778479781.000000
 !s107 alu.v|
-!s90 alu.v|
+!s90 +acc|+cover|-l|alu.log|alu.v|
 !i113 0
-o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z5 !s102 +cover
+Z6 o+acc +cover -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
 valu_project
-Z5 !s110 1778478149
+!s110 1778478149
 !i10b 1
 !s100 ;MIUW^H66`N@j39C1n8=?1
 I8]OCo6IHTX4ehCFJRYO9O3
@@ -53,54 +54,52 @@ R4
 r1
 !s85 0
 31
-Z6 !s108 1778478149.000000
-Z7 !s107 alu_tb.v|alu_ref.v|karan.v|
-Z8 !s90 +acc|+cover|-l|alu.log|karan.v|alu_ref.v|alu_tb.v|
+!s108 1778478149.000000
+!s107 alu_tb.v|alu_ref.v|karan.v|
+!s90 +acc|+cover|-l|alu.log|karan.v|alu_ref.v|alu_tb.v|
 !i113 0
-Z9 !s102 +cover
-Z10 o+acc +cover -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R5
+R6
 R1
 valu_ref_model
-R5
+Z7 !s110 1778479761
 !i10b 1
-!s100 J>T98J`Y@zH<^bbfSTQFT3
-IoEnPl<OeYeV7`P_8Oa3PY2
+!s100 `I7GC3X7E3?XI2:1C8jfm2
+IAdo0S7:Z^4KEMVnOf:62m0
 R2
 R0
-w1778402707
-8alu_ref.v
-Falu_ref.v
-L0 8
+w1778479343
+8aalluu_ref.v
+Faalluu_ref.v
+Z8 L0 17
 R4
 r1
 !s85 0
 31
-R6
-R7
-R8
+Z9 !s108 1778479761.000000
+Z10 !s107 alu_tb.v|aalluu_ref.v|alu.v|
+Z11 !s90 alu.v|aalluu_ref.v|alu_tb.v|
 !i113 0
-R9
-R10
+Z12 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
 valu_tb
-R5
+R7
 !i10b 1
-!s100 :mgiTGAZe=E8_iXKhGa<T3
-IHG7@FmDb6>Man43T;zOTY3
+!s100 W7^EfgcMnfiY^^0bS@bb:3
+IY8G31ch=6C_ekR@X<[FIi1
 R2
 R0
-w1778402698
+w1778479732
 8alu_tb.v
 Falu_tb.v
-L0 8
+R8
 R4
 r1
 !s85 0
 31
-R6
-R7
-R8
-!i113 0
 R9
 R10
+R11
+!i113 0
+R12
 R1
