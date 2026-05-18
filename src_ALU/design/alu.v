@@ -45,10 +45,10 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
     reg cin_d;
     reg [DATA_WIDTH-1:0]mul_op_a;
     reg [DATA_WIDTH-1:0]mul_op_b;
-    reg signed [DATA_WIDTH-1:0]opa_signed;
-    reg signed [DATA_WIDTH-1:0]opb_signed;
-    wire [DATA_WIDTH:0]signed_sum_ext;
-    assign signed_sum_ext = $signed(opa_d) + $signed(opb_d);
+    wire signed [DATA_WIDTH:0] signed_sum_ext;
+    assign signed_sum_ext = $signed({opa_d[DATA_WIDTH-1], opa_d}) + $signed({opb_d[DATA_WIDTH-1], opb_d});
+    wire signed [DATA_WIDTH:0] signed_diff_ext;
+    assign signed_diff_ext = $signed({opa_d[DATA_WIDTH-1], opa_d}) - $signed({opb_d[DATA_WIDTH-1], opb_d});
     always @(posedge CLK) begin
         if (MODE && (CMD == 4'd9 || CMD == 4'd10)) begin
             if (cycle_cnt < 2)
@@ -86,7 +86,7 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
                 case (cmd_d)
                     4'd0: begin
                         if (inp_valid_d == 2'b11)
-                            {COUT, RES[DATA_WIDTH-1:0]} <= opa_d + opb_d;
+                            {COUT, RES[DATA_WIDTH-1:0]} <= {1'b0, opa_d} + {1'b0, opb_d};
                         else begin
                             ERR <= 1;
                             RES <= 0;
@@ -95,7 +95,7 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
                     4'd1: begin
                         if (inp_valid_d == 2'b11) begin
                             OFLOW <= (opa_d < opb_d) ? 1'b1 : 1'b0;
-                            RES[DATA_WIDTH-1:0] <= opa_d - opb_d; end
+                            RES[DATA_WIDTH-1:0] <= {1'b0, opa_d} - {1'b0, opb_d}; end
                         else begin
                             ERR <= 1;
                             RES <= 0;
@@ -103,7 +103,7 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
                     end
                     4'd2: begin
                         if (inp_valid_d == 2'b11)
-                            {COUT, RES[DATA_WIDTH-1:0]} <= opa_d + opb_d + cin_d;
+                            {COUT, RES[DATA_WIDTH-1:0]} <= {1'b0, opa_d} + {1'b0, opb_d} + cin_d;
                         else begin
                             ERR <= 1;
                             RES <= 0;
@@ -111,7 +111,7 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
                     end
                     4'd3: begin
                         if (inp_valid_d == 2'b11)
-                            RES[DATA_WIDTH-1:0] <= opa_d - opb_d - cin_d;
+                            RES[DATA_WIDTH-1:0] <= {1'b0, opa_d} - {1'b0, opb_d} - cin_d;
                         else begin
                             ERR <= 1;
                             RES <= 0;
@@ -198,14 +198,12 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
                         end
                     end
                     4'd11: begin
-                        opa_signed = $signed(opa_d);
-                        opb_signed = $signed(opb_d);
                         if (inp_valid_d == 2'b11) begin
-                            RES <= opa_signed + opb_signed;
-                            OFLOW <= (opa_signed[DATA_WIDTH-1] == opb_signed[DATA_WIDTH-1]) && (signed_sum_ext[DATA_WIDTH] != opa_signed[DATA_WIDTH-1]);
-                            G <= (opa_signed > opb_signed);
-                            E <= (opa_signed == opb_signed);
-                            L <= (opa_signed < opb_signed);
+                            RES[DATA_WIDTH-1:0] <= signed_sum_ext[DATA_WIDTH-1:0];
+                            OFLOW <= (opa_d[DATA_WIDTH-1] == opb_d[DATA_WIDTH-1]) && (signed_sum_ext[DATA_WIDTH-1] != opa_d[DATA_WIDTH-1]);
+                            G <= ($signed(opa_d) > $signed(opb_d));
+                            E <= ($signed(opa_d) == $signed(opb_d));
+                            L <= ($signed(opa_d) < $signed(opb_d));
                         end
                         else begin
                             ERR <= 1;
@@ -213,14 +211,12 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
                         end
                     end
                     4'd12: begin
-                        opa_signed = opa_d;
-                        opb_signed = opb_d;
                         if (inp_valid_d == 2'b11) begin
-                            RES <= opa_signed - opb_signed;
-                            OFLOW <= (opa_signed[DATA_WIDTH-1] != opb_signed[DATA_WIDTH-1]) && (signed_sum_ext[DATA_WIDTH] != opa_signed[DATA_WIDTH-1]);
-                            G <= (opa_signed > opb_signed);
-                            E <= (opa_signed == opb_signed);
-                            L <= (opa_signed < opb_signed);
+                            RES[DATA_WIDTH-1:0] <= signed_diff_ext[DATA_WIDTH-1:0];
+                            OFLOW <= (opa_d[DATA_WIDTH-1] != opb_d[DATA_WIDTH-1]) && (signed_diff_ext[DATA_WIDTH-1] != opa_d[DATA_WIDTH-1]);
+                            G <= ($signed(opa_d) > $signed(opb_d));
+                            E <= ($signed(opa_d) == $signed(opb_d));
+                            L <= ($signed(opa_d) < $signed(opb_d));
                         end
                         else begin
                             ERR <= 1;
@@ -367,14 +363,3 @@ module alu #(parameter DATA_WIDTH = 8, parameter CMD_WIDTH  = 4)(
         end
     end
 endmodule
-
-
-
-
-
-
-
-
-
-
-
